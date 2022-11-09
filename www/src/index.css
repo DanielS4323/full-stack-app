@@ -3,8 +3,36 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  background-color: #874c62;
+}
+
+/*  COLORS  */
+
+.primary-bg {
+  background-color: #a7d2cb;
+}
+.primary-c {
+  color: #a7d2cb;
+}
+
+.secondary-bg {
+  background-color: #f2d388;
+}
+
+.secondary-c {
+  color: #f2d388;
+}
+
+.tertiary-c {
+  color: #874c62;
+}
 
 /* CSS HELPERS */
+
+.margin.rl-10 {
+  margin: 0 10px;
+}
 
 .margin.top-0 {
   margin-top: 0;
@@ -281,334 +309,4 @@
 }
 .margin.s-all-20 {
   margin: 20px;
-}
-@media only screen and (min-width: 601px) {
-  .row .col.offset-m0 {
-    margin-left: auto;
-  }
-  .row .col.offset-s0.offset-m1 {
-    margin-left: 8.33333%;
-  }
-  .padding.m-top-0 {
-    padding-top: 0;
-  }
-  .padding.m-bottom-0 {
-    padding-bottom: 0;
-  }
-  .padding.m-top-20 {
-    padding-top: 20px;
-  }
-  .padding.m-bottom-20 {
-    padding-bottom: 20px;
-  }
-  .padding.m-top-40 {
-    padding-top: 40px;
-  }
-  .padding.m-bottom-40 {
-    padding-bottom: 40px;
-  }
-  .padding.m-top-60 {
-    padding-top: 60px;
-  }
-  .padding.m-bottom-60 {
-    padding-bottom: 60px;
-  }
-  .padding.m-top-80 {
-    padding-top: 80px;
-  }
-  .padding.m-bottom-80 {
-    padding-bottom: 80px;
-  }
-  .padding.m-top-100 {
-    padding-top: 100px;
-  }
-  .padding.m-bottom-100 {
-    padding-bottom: 100px;
-  }
-  .padding.m-top-120 {
-    padding-top: 120px;
-  }
-  .padding.m-bottom-120 {
-    padding-bottom: 120px;
-  }
-  .padding.m-top-160 {
-    padding-top: 160px;
-  }
-  .padding.m-bottom-160 {
-    padding-bottom: 160px;
-  }
-  .padding.m-all-20 {
-    padding: 20px;
-  }
-  .margin.m-top-0 {
-    margin-top: 0;
-  }
-  .margin.m-bottom-0 {
-    margin-bottom: 0;
-  }
-  .margin.m-top-20 {
-    margin-top: 20px;
-  }
-  .margin.m-bottom-20 {
-    margin-bottom: 20px;
-  }
-  .margin.m-top-40 {
-    margin-top: 40px;
-  }
-  .margin.m-bottom-40 {
-    margin-bottom: 40px;
-  }
-  .margin.m-top-60 {
-    margin-top: 60px;
-  }
-  .margin.m-bottom-60 {
-    margin-bottom: 60px;
-  }
-  .margin.m-top-80 {
-    margin-top: 80px;
-  }
-  .margin.m-bottom-80 {
-    margin-bottom: 80px;
-  }
-  .margin.m-top-100 {
-    margin-top: 100px;
-  }
-  .margin.m-bottom-100 {
-    margin-bottom: 100px;
-  }
-  .margin.m-top-120 {
-    margin-top: 120px;
-  }
-  .margin.m-bottom-120 {
-    margin-bottom: 120px;
-  }
-  .margin.m-top-160 {
-    margin-top: 160px;
-  }
-  .margin.m-bottom-160 {
-    margin-bottom: 160px;
-  }
-  .margin.m-all-20 {
-    margin: 20px;
-  }
-}
-@media only screen and (min-width: 993px) {
-  .row .col.offset-l0 {
-    margin-left: auto;
-  }
-  .row .col.offset-m0.offset-l1 {
-    margin-left: 8.33333%;
-  }
-  .padding.l-top-0 {
-    padding-top: 0;
-  }
-  .padding.l-bottom-0 {
-    padding-bottom: 0;
-  }
-  .padding.l-top-20 {
-    padding-top: 20px;
-  }
-  .padding.l-bottom-20 {
-    padding-bottom: 20px;
-  }
-  .padding.l-top-40 {
-    padding-top: 40px;
-  }
-  .padding.l-bottom-40 {
-    padding-bottom: 40px;
-  }
-  .padding.l-top-60 {
-    padding-top: 60px;
-  }
-  .padding.l-bottom-60 {
-    padding-bottom: 60px;
-  }
-  .padding.l-top-80 {
-    padding-top: 80px;
-  }
-  .padding.l-bottom-80 {
-    padding-bottom: 80px;
-  }
-  .padding.l-top-100 {
-    padding-top: 100px;
-  }
-  .padding.l-bottom-100 {
-    padding-bottom: 100px;
-  }
-  .padding.l-top-120 {
-    padding-top: 120px;
-  }
-  .padding.l-bottom-120 {
-    padding-bottom: 120px;
-  }
-  .padding.l-top-160 {
-    padding-top: 160px;
-  }
-  .padding.l-bottom-160 {
-    padding-bottom: 160px;
-  }
-  .padding.l-all-20 {
-    padding: 20px;
-  }
-  .margin.l-top-0 {
-    margin-top: 0;
-  }
-  .margin.l-bottom-0 {
-    margin-bottom: 0;
-  }
-  .margin.l-top-20 {
-    margin-top: 20px;
-  }
-  .margin.l-bottom-20 {
-    margin-bottom: 20px;
-  }
-  .margin.l-top-40 {
-    margin-top: 40px;
-  }
-  .margin.l-bottom-40 {
-    margin-bottom: 40px;
-  }
-  .margin.l-top-60 {
-    margin-top: 60px;
-  }
-  .margin.l-bottom-60 {
-    margin-bottom: 60px;
-  }
-  .margin.l-top-80 {
-    margin-top: 80px;
-  }
-  .margin.l-bottom-80 {
-    margin-bottom: 80px;
-  }
-  .margin.l-top-100 {
-    margin-top: 100px;
-  }
-  .margin.l-bottom-100 {
-    margin-bottom: 100px;
-  }
-  .margin.l-top-120 {
-    margin-top: 120px;
-  }
-  .margin.l-bottom-120 {
-    margin-bottom: 120px;
-  }
-  .margin.l-top-160 {
-    margin-top: 160px;
-  }
-  .margin.l-bottom-160 {
-    margin-bottom: 160px;
-  }
-  .margin.l-all-20 {
-    margin: 20px;
-  }
-}
-@media only screen and (min-width: 1201px) {
-  .row .col.offset-xl0 {
-    margin-left: auto;
-  }
-  .row .col.offset-l0.offset-xl1 {
-    margin-left: 8.33333%;
-  }
-  .padding.xl-top-0 {
-    padding-top: 0;
-  }
-  .padding.xl-bottom-0 {
-    padding-bottom: 0;
-  }
-  .padding.xl-top-20 {
-    padding-top: 20px;
-  }
-  .padding.xl-bottom-20 {
-    padding-bottom: 20px;
-  }
-  .padding.xl-top-40 {
-    padding-top: 40px;
-  }
-  .padding.xl-bottom-40 {
-    padding-bottom: 40px;
-  }
-  .padding.xl-top-60 {
-    padding-top: 60px;
-  }
-  .padding.xl-bottom-60 {
-    padding-bottom: 60px;
-  }
-  .padding.xl-top-80 {
-    padding-top: 80px;
-  }
-  .padding.xl-bottom-80 {
-    padding-bottom: 80px;
-  }
-  .padding.xl-top-100 {
-    padding-top: 100px;
-  }
-  .padding.xl-bottom-100 {
-    padding-bottom: 100px;
-  }
-  .padding.xl-top-120 {
-    padding-top: 120px;
-  }
-  .padding.xl-bottom-120 {
-    padding-bottom: 120px;
-  }
-  .padding.xl-top-160 {
-    padding-top: 160px;
-  }
-  .padding.xl-bottom-160 {
-    padding-bottom: 160px;
-  }
-  .padding.xl-all-20 {
-    padding: 20px;
-  }
-  .margin.xl-top-0 {
-    margin-top: 0;
-  }
-  .margin.xl-bottom-0 {
-    margin-bottom: 0;
-  }
-  .margin.xl-top-20 {
-    margin-top: 20px;
-  }
-  .margin.xl-bottom-20 {
-    margin-bottom: 20px;
-  }
-  .margin.xl-top-40 {
-    margin-top: 40px;
-  }
-  .margin.xl-bottom-40 {
-    margin-bottom: 40px;
-  }
-  .margin.xl-top-60 {
-    margin-top: 60px;
-  }
-  .margin.xl-bottom-60 {
-    margin-bottom: 60px;
-  }
-  .margin.xl-top-80 {
-    margin-top: 80px;
-  }
-  .margin.xl-bottom-80 {
-    margin-bottom: 80px;
-  }
-  .margin.xl-top-100 {
-    margin-top: 100px;
-  }
-  .margin.xl-bottom-100 {
-    margin-bottom: 100px;
-  }
-  .margin.xl-top-120 {
-    margin-top: 120px;
-  }
-  .margin.xl-bottom-120 {
-    margin-bottom: 120px;
-  }
-  .margin.xl-top-160 {
-    margin-top: 160px;
-  }
-  .margin.xl-bottom-160 {
-    margin-bottom: 160px;
-  }
-  .margin.xl-all-20 {
-    margin: 20px;
-  }
 }

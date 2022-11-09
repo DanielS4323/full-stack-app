@@ -1,4 +1,3 @@
-import Layout from "./components/layout/Layout";
 import Header from "./components/UI/Header";
 import CreateTodo from "./components/Todo/CreateTodo";
 import TodoList from "./components/Todo/TodoList";
@@ -13,7 +12,7 @@ function App() {
           <CreateTodo />
         </div>
         <div className="col s8 l6 offset-l3">
-          <TodoList/>
+          <TodoList />
         </div>
       </div>
     </div>
