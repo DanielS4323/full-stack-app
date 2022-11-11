@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use('/todos', todoRoutes)
 
 app.get("/", (req, res) => {
-  res.send("Hello from homepage");
+  res.send("Hello from API");
 });
 
 app.listen(PORT, () =>

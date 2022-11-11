@@ -13,7 +13,13 @@ const DUMMY = [
 const content = DUMMY.map((todo) => <Todo key={todo.id} todo={todo} />);
 
 const TodoList = () => {
-  return <ul className="collection margin top-20">{content}</ul>;
+  return (
+    <div className="grey darken-4">
+      <h5 className="padding all-10 white-text">3 Total, 2 Completed</h5>
+      <div className="divider margin bottom-20"></div>
+      {content}
+    </div>
+  );
 };
 
 export default TodoList;

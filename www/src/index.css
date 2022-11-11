@@ -4,7 +4,13 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #874c62;
+  background: rgb(37, 5, 168);
+  background: linear-gradient(
+    90deg,
+    rgba(37, 5, 168, 1) 0%,
+    rgba(88, 23, 144, 1) 51%,
+    rgba(135, 6, 135, 1) 100%
+  );
 }
 
 /*  COLORS  */
