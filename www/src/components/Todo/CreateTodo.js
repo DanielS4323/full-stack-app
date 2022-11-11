@@ -8,7 +8,7 @@ const CreateTodo = () => {
           <i className="material-icons prefix white-text">mode_edit</i>
           <textarea
             id="icon_prefix2"
-            className="materialize-textarea"
+            className="white-text materialize-textarea"
           ></textarea>
           <label htmlFor="icon_prefix2" className="white-text">
             Enter To do
