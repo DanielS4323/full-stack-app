@@ -18,6 +18,10 @@ body {
   border-bottom: 2px solid rgb(150, 23, 150)!important;
   box-shadow: 0 0 0 0!important;
 }
+ /* .filled-in input[type="checkbox"] span{
+ background-color: purple!important;
+
+} */
 
 .primary-bg {
   background-color: #a7d2cb;
