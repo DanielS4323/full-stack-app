@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import TodoContext from "../../store/Todo-Context";
 import Todo from "./Todo";
 
-const DUMMY = [
-  { text: "Kupi mleko", id: "j31j2", completed: false },
-  { text: "Kupi picu", id: "dsd3", completed: true },
-  { text: "Odradi domaci", id: "23s", completed: false },
-];
-
-
-
-
 const TodoList = () => {
-  const [todos,setTodos] = useState(DUMMY)
-  
-  const content = todos.map((todo) => <Todo key={todo.id} todo={todo} />);
+  const { totalTodos, getAllTodos, completedTodos } = useContext(TodoContext);
+
+  const totalTodosCount = `${totalTodos} Total, ${completedTodos} Completed`;
+  const noTodos = "No todos...";
+
+  const displayTodos = getAllTodos.map((todo) => (
+    <Todo key={todo.id} todo={todo} />
+  ));
 
   return (
     <div className="grey darken-4">
-      <h5 className="padding all-10 white-text">3 Total, 2 Completed</h5>
+      <h5 className="padding all-10 white-text center">
+        {totalTodos > 0 && totalTodosCount}
+        {totalTodos === 0 && noTodos}
+      </h5>
       <div className="divider margin bottom-20"></div>
-      {content}
+      {totalTodos > 0 && displayTodos}
     </div>
   );
 };
