@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import TodoContext from "../../store/Todo-Context";
 
 const Todo = (props) => {
-  const handleCompleted = () => {
-    let updateTodo = props.todo
-    let findIndex = 12
+  const { markTodo, editToggle, deleteTodo } = useContext(TodoContext);
+
+  const onClickHandleMark = () => {
+    markTodo(props.todo.id);
+  };
+
+  const onClickHandleEditToggle = () => {
+    editToggle(props.todo.id);
+  };
+
+  const onClickHandleDelete = () => {
+    deleteTodo(props.todo.id);
   };
 
   return (
@@ -12,7 +22,7 @@ const Todo = (props) => {
         <div className="col s1">
           <label className="padding all-20">
             <input
-              onChange={handleCompleted}
+              onChange={onClickHandleMark}
               type="checkbox"
               className="filled-in"
               checked={props.todo.completed}
@@ -24,12 +34,18 @@ const Todo = (props) => {
           <h6 className="title white-text">{props.todo.text}</h6>
         </div>
         <div className="col s2 push-s2">
-          <button className="purple darken-4 white-text btn-small waves-effect waves-light margin top-10 brown-text hoverable">
+          <button
+            onClick={onClickHandleEditToggle}
+            className="purple darken-4 white-text btn-small waves-effect waves-light margin top-10 brown-text hoverable"
+          >
             Edit
           </button>
         </div>
         <div className="col s2 push-s2">
-          <button className="purple lighten-1 white-text btn-small waves-effect waves-light margin top-10 brown-text hoverable">
+          <button
+            onClick={onClickHandleDelete}
+            className="purple lighten-1 white-text btn-small waves-effect waves-light margin top-10 brown-text hoverable"
+          >
             delete
           </button>
         </div>
