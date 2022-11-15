@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { deleteTodo, getAllTodos } from "../service";
 import TodoContext from "./Todo-Context";
 
 const TodoProvider = (props) => {
@@ -9,9 +10,15 @@ const TodoProvider = (props) => {
     { text: "Odradi adasda", id: "21233s", completed: true },
   ]);
 
+  // useEffect(() => {
+  //   getAllTodos().then((res) => {
+  //     setTodos(res);
+  //   });
+  // });
+
   const [todoToEdit, setTodoToEdit] = useState(null);
 
-  const completedTodosHandler = todos.filter((todo) => todo.completed === true);
+  // const completedTodosHandler = todos.filter((todo) => todo.completed === true);
 
   const addNewTodoHandler = (text, completed) => {
     const newTodo = {
@@ -24,8 +31,8 @@ const TodoProvider = (props) => {
   };
 
   const deleteTodoHandler = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-    setTodoToEdit(false)
+    deleteTodo(id);
+    setTodoToEdit(false);
   };
 
   const markTodoHandler = (id) => {
@@ -36,18 +43,18 @@ const TodoProvider = (props) => {
       completed: !todoToMark.completed,
     };
     setTodos(todos.map((todo) => (todo.id === id ? markedTodo : todo)));
-    setTodoToEdit(false)
+    setTodoToEdit(false);
   };
 
   const editToggleHandler = (id) => {
-    setTodoToEdit(false)
+    setTodoToEdit(false);
     const toEditTodo = todos.find((todo) => todo.id === id);
     setTodoToEdit(toEditTodo);
   };
 
   const cancelToggleHandler = () => {
-    setTodoToEdit(false)
-  }
+    setTodoToEdit(false);
+  };
 
   const editTodoHandler = (id, text) => {
     const todoToEdit = todos.find((todo) => todo.id === id);
@@ -61,16 +68,16 @@ const TodoProvider = (props) => {
   };
 
   const todoContext = {
-    getAllTodos: todos,
+    todos: todos,
     totalTodos: todos.length,
-    completedTodos: completedTodosHandler.length,
+    // completedTodos: completedTodosHandler.length,
     todoToEdit: todoToEdit,
     addNewTodo: addNewTodoHandler,
     deleteTodo: deleteTodoHandler,
     markTodo: markTodoHandler,
     editTodo: editTodoHandler,
     editToggle: editToggleHandler,
-    cancelToggle: cancelToggleHandler
+    cancelToggle: cancelToggleHandler,
   };
 
   return (
