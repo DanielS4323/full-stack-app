@@ -3,12 +3,12 @@ import TodoContext from "../../store/Todo-Context";
 import Todo from "./Todo";
 
 const TodoList = () => {
-  const { totalTodos, getAllTodos, completedTodos } = useContext(TodoContext);
+  const { totalTodos, todos, completedTodos } = useContext(TodoContext);
 
   const totalTodosCount = `${totalTodos} Total, ${completedTodos} Completed`;
   const noTodos = "No todos...";
 
-  const displayTodos = getAllTodos.map((todo) => (
+  const displayTodos = todos?.map((todo) => (
     <Todo key={todo.id} todo={todo} />
   ));
 
