@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import TodoContext from "../../store/Todo-Context";
+import Button from "../UI/Button";
 
 const EditTodo = () => {
   const { todoToEdit, editTodo, cancelToggle } = useContext(TodoContext);
@@ -10,9 +11,9 @@ const EditTodo = () => {
   };
 
   const onClickHandle = () => {
-    let text = editTodoText.trim()
-    if(text.length > 1) {
-        editTodo(todoToEdit.id, text);
+    let text = editTodoText.trim();
+    if (text.length > 1) {
+      editTodo(todoToEdit.id, text);
     }
     return;
   };
@@ -41,24 +42,20 @@ const EditTodo = () => {
           <label htmlFor="icon_prefix" className="white-text"></label>
           <div className="row">
             <div className="col-12 center">
-              <button
+              <Button
+                title="Edit Todo"
                 className="purple darken-4 white-text btn waves-effect waves-light margin all-10  brown-text hoverable"
-                type="submit"
-                name="action"
+                iconClassName="material-icons right"
+                icon="note_add"
                 onClick={onClickHandle}
-              >
-                Edit Todo
-                <i className="material-icons right">note_add</i>
-              </button>
-              <button
+              />
+              <Button
+                title="Cancel"
                 className="purple lighten-1 white-text btn waves-effect waves-light margin all-10  brown-text hoverable"
-                type="submit"
-                name="action"
+                iconClassName="material-icons right"
+                icon="cancel"
                 onClick={onClickCancelEdit}
-              >
-                Cancel
-                <i className="material-icons right">cancel</i>
-              </button>
+              />
             </div>
           </div>
         </div>

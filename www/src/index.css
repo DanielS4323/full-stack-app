@@ -14,33 +14,14 @@ body {
 }
 
 /*  COLORS  */
-.input-field input[type="text"]:focus{
-  border-bottom: 2px solid rgb(150, 23, 150)!important;
-  box-shadow: 0 0 0 0!important;
+.input-field input[type="text"]:focus {
+  border-bottom: 2px solid rgb(150, 23, 150) !important;
+  box-shadow: 0 0 0 0 !important;
 }
- /* .filled-in input[type="checkbox"] span{
+/* .filled-in input[type="checkbox"] span{
  background-color: purple!important;
 
 } */
-
-.primary-bg {
-  background-color: #a7d2cb;
-}
-.primary-c {
-  color: #a7d2cb;
-}
-
-.secondary-bg {
-  background-color: #f2d388;
-}
-
-.secondary-c {
-  color: #f2d388;
-}
-
-.tertiary-c {
-  color: #874c62;
-}
 
 /* CSS HELPERS */
 

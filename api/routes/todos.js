@@ -10,8 +10,6 @@ import {
 
 const router = express.Router();
 
-
-
 router.get("/", getTodos);
 
 router.post("/", createTodo);
@@ -21,5 +19,6 @@ router.get("/:id", getOneTodo);
 router.delete("/:id", deleteTodo);
 
 router.patch("/:id", patchTodo);
+
 
 export default router;

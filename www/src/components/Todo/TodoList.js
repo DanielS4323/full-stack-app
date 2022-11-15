@@ -13,7 +13,7 @@ const TodoList = () => {
   ));
 
   return (
-    <div className="grey darken-4">
+    <div className="grey darken-4 margin bottom-100">
       <h5 className="padding all-10 white-text center">
         {totalTodos > 0 && totalTodosCount}
         {totalTodos === 0 && noTodos}

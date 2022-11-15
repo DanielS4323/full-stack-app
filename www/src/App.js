@@ -2,13 +2,27 @@ import Header from "./components/UI/Header";
 import CreateTodo from "./components/Todo/CreateTodo";
 import TodoList from "./components/Todo/TodoList";
 import "./index.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import TodoContext from "./store/Todo-Context";
 import EditTodo from "./components/Todo/EditTodo";
 
 function App() {
   const { todoToEdit } = useContext(TodoContext);
-  // console.log(todoToEdit);
+  const [todos, setTodos] = useState()
+
+  async function getAllTodos() {
+    const response = await fetch("http://localhost:5000/todos");
+    const data = await response.json();
+    return data
+    
+}
+
+  useEffect(() => {
+    getAllTodos().then((res) => {
+      console.log(res)
+    })
+  })
+
   return (
     <div className="App">
       <Header />
