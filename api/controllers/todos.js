@@ -69,7 +69,7 @@ export const deleteTodo = async (req, res) => {
     res.send(error);
   }
 
-  res.send(`Todo with id ${id} is deleted from DB`);
+  res.json({message: `Todo with id ${id} is deleted from DB`});
 };
 export const patchTodo = async (req, res) => {
   const { id } = req.params;
