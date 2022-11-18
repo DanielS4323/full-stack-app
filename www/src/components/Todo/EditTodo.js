@@ -12,9 +12,13 @@ const EditTodo = () => {
 
   const onClickHandle = () => {
     let text = editTodoText.trim();
+    const editetText = {
+      text: text,
+    };
     if (text.length > 1) {
-      editTodo(todoToEdit.id, text);
+      editTodo(todoToEdit.id, editetText);
     }
+    
     return;
   };
 
