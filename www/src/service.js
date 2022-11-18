@@ -54,6 +54,7 @@ export const markTodo = async (id, completed) => {
   if (!response.ok) {
     throw new Error("Could not mark todo.");
   }
+
   return data;
 };
 
