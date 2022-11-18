@@ -4,15 +4,14 @@ import Button from "../UI/Button";
 
 const CreateTodo = () => {
   const { addNewTodo } = useContext(TodoContext);
-  const text = useRef('');
+  const text = useRef("");
 
   const addNewTodoHandler = () => {
     let todoText = text.current.value.trim();
-    let completed = false;
+    let completed = '';
 
     if (todoText.length > 1) {
       addNewTodo(todoText, completed);
-
       text.current.value = "";
     }
     return;
