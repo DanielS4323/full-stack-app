@@ -7,16 +7,20 @@ const Todo = (props) => {
   const { markTodo, editToggle, deleteTodo } = useContext(TodoContext);
 
   const onClickHandleMark = () => {
-    markTodo(todo.id);
+    markTodo(todo.id, todo.completed);
   };
 
   const onClickHandleEditToggle = () => {
-    editToggle(todo.id);
+    editToggle(todo);
   };
 
   const onClickHandleDelete = () => {
     deleteTodo(todo.id);
   };
+
+  const checkForMark = todo.completed === 'true' ? true : false
+
+  // console.log(todo.completed)
 
   return (
     <React.Fragment>
@@ -27,7 +31,8 @@ const Todo = (props) => {
               onChange={onClickHandleMark}
               type="checkbox"
               className="filled-in"
-              checked={todo.completed}
+              
+              checked={checkForMark}
             />
             <span className="margin rl-10"></span>
           </label>
