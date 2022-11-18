@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./components/UI/Header";
 import CreateTodo from "./components/Todo/CreateTodo";
 import TodoList from "./components/Todo/TodoList";
@@ -5,11 +6,12 @@ import "./index.css";
 import { useContext } from "react";
 import TodoContext from "./store/Todo-Context";
 import EditTodo from "./components/Todo/EditTodo";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 
 function App() {
-  const { todoToEdit } = useContext(TodoContext);
-  
+  const { todoToEdit, isLoading } = useContext(TodoContext);
+
 
   return (
     <div className="App">
@@ -19,9 +21,12 @@ function App() {
           {!todoToEdit && <CreateTodo />}
           {todoToEdit && <EditTodo />}
         </div>
-        <div className="col s8 l6 offset-l3">
-          <TodoList />
-        </div>
+        {isLoading && <LoadingSpinner />}
+        {!isLoading && (
+          <div className="col s8 l6 offset-l3">
+            <TodoList />
+          </div>
+        )}
       </div>
     </div>
   );
