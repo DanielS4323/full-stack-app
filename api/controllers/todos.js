@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { getFirestore } from "firebase-admin/firestore";
 import { initializeApp, cert } from "firebase-admin/app";
 import { readFile } from "fs/promises";
@@ -29,9 +28,11 @@ export const getTodos = async (req, res) => {
         id: doc._ref._path.segments[1],
       });
     });
-    res.status(200).send(responseArr);
+    res.status(200).json(responseArr);
   } catch (error) {
-    res.send(error);
+    res.status(404).json({
+      error: error.message,
+    });
   }
 };
 
@@ -45,8 +46,8 @@ export const createTodo = async (req, res) => {
     res.status(201).json(todo);
   } catch (error) {
     res.status(409).json({
-      error: error.message
-    })
+      error: error.message,
+    });
   }
 };
 
@@ -54,9 +55,11 @@ export const getOneTodo = async (req, res) => {
   try {
     const todosRef = db.collection("todos").doc(req.params.id);
     const response = await todosRef.get();
-    res.status(201).send(response.data());
+    res.status(200).json(response.data());
   } catch (error) {
-    res.send(error);
+    res.status(404).json({
+      error: error.message,
+    });
   }
 };
 
@@ -64,12 +67,11 @@ export const deleteTodo = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const response = db.collection("todos").doc(id).delete();
+    const response = await db.collection("todos").doc(id).delete();
+    res.json({ message: `Todo with id:${id} was deleted.` });
   } catch (error) {
-    res.send(error);
+    res.status(404).json({ messaage: `Unknown id:${id}.` });
   }
-
-  res.json({message: `Todo with id ${id} is deleted from DB`});
 };
 export const patchTodo = async (req, res) => {
   const { id } = req.params;
@@ -77,22 +79,22 @@ export const patchTodo = async (req, res) => {
   const todosRef = db.collection("todos");
   if (text) {
     try {
-     await todosRef.doc(id).update({
+      await todosRef.doc(id).update({
         text: text,
       });
-      res.send("text updated");
+      res.status(200).json({ messaage: `Sucessfully patched id:${id}` });
     } catch (error) {
-      res.send(error);
+      res.status(400).json({ messaage: `Could not patch todo with id:${id}` });
     }
   }
   if (completed) {
     try {
-     await todosRef.doc(id).update({
+      await todosRef.doc(id).update({
         completed: completed,
       });
-      res.send("mark updated");
+      res.status(200).json({ messaage: `Sucessfully marked id:${id}` });
     } catch (error) {
-      res.send(error);
+      res.status(400).json({ messaage: `Could not mark todo with id:${id}` });
     }
   }
 };
