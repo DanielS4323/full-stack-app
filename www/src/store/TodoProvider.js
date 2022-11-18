@@ -1,76 +1,73 @@
 import React, { useEffect, useState } from "react";
-import { deleteTodo, getAllTodos } from "../service";
+import {
+  addNewTodo,
+  deleteTodo,
+  editTodo,
+  getAllTodos,
+  markTodo,
+} from "../service";
 import TodoContext from "./Todo-Context";
 
 const TodoProvider = (props) => {
-  const [todos, setTodos] = useState([
-    { text: "Kupi mleko", id: "j31j2", completed: false },
-    { text: "Kupi picu", id: "dsd3", completed: true },
-    { text: "Odradi domaci", id: "23s", completed: false },
-    { text: "Odradi adasda", id: "21233s", completed: true },
-  ]);
-
-  // useEffect(() => {
-  //   getAllTodos().then((res) => {
-  //     setTodos(res);
-  //   });
-  // });
-
+  const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [updateUI, setUpdateUI] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState(null);
 
-  // const completedTodosHandler = todos.filter((todo) => todo.completed === true);
+  useEffect(() => {
+    getAllTodos().then((res) => {
+      setTodos(res);
+    });
+  }, [setTodos, updateUI]);
+
+  const completedTodosHandler = todos?.filter(
+    (todo) => todo.completed === "true"
+  );
 
   const addNewTodoHandler = (text, completed) => {
     const newTodo = {
       text: text,
       completed: completed,
-      id: Math.random(),
     };
 
-    setTodos((prev) => [newTodo].concat(prev));
+    addNewTodo(newTodo);
+    setUpdateUI((prev) => !prev);
   };
 
   const deleteTodoHandler = (id) => {
     deleteTodo(id);
     setTodoToEdit(false);
+    setUpdateUI((prev) => !prev);
   };
 
-  const markTodoHandler = (id) => {
-    const todoToMark = todos.find((todo) => todo.id === id);
+  const markTodoHandler = (id, completed) => {
+    const markedCheck = completed === "true" ? "false" : "true";
     let markedTodo = {
-      text: todoToMark.text,
-      id: todoToMark.id,
-      completed: !todoToMark.completed,
+      completed: markedCheck,
     };
-    setTodos(todos.map((todo) => (todo.id === id ? markedTodo : todo)));
-    setTodoToEdit(false);
+    markTodo(id, markedTodo);
+    setUpdateUI((prev) => !prev);
   };
 
-  const editToggleHandler = (id) => {
-    setTodoToEdit(false);
-    const toEditTodo = todos.find((todo) => todo.id === id);
-    setTodoToEdit(toEditTodo);
+  const editToggleHandler = (todo) => {
+    setTodoToEdit(todo);
   };
 
   const cancelToggleHandler = () => {
-    setTodoToEdit(false);
+    setTodoToEdit(null);
   };
 
   const editTodoHandler = (id, text) => {
-    const todoToEdit = todos.find((todo) => todo.id === id);
-    let updatedTodo = {
-      text: text,
-      id: todoToEdit.id,
-      completed: todoToEdit.completed,
-    };
-    setTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
-    setTodoToEdit(false);
+    editTodo(id, text);
+    setUpdateUI((prev) => !prev);
+    setTodoToEdit(null);
   };
 
   const todoContext = {
     todos: todos,
     totalTodos: todos.length,
-    // completedTodos: completedTodosHandler.length,
+    completedTodos: completedTodosHandler.length,
+    isLoading: isLoading,
     todoToEdit: todoToEdit,
     addNewTodo: addNewTodoHandler,
     deleteTodo: deleteTodoHandler,
