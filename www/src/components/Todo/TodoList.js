@@ -5,13 +5,11 @@ import Todo from "./Todo";
 const TodoList = () => {
   const { totalTodos, todos, completedTodos } = useContext(TodoContext);
 
+  const noTodos = <p>No todos...</p>;
+
+  const displayTodos = todos?.map((todo) => <Todo key={todo.id} todo={todo} />);
+
   const totalTodosCount = `${totalTodos} Total, ${completedTodos} Completed`;
-  const noTodos = "No todos...";
-
-  const displayTodos = todos?.map((todo) => (
-    <Todo key={todo.id} todo={todo} />
-  ));
-
   return (
     <div className="grey darken-4 margin bottom-100">
       <h5 className="padding all-10 white-text center">
