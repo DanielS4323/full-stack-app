@@ -1,6 +1,7 @@
 import React from "react";
 
 const TodoContext = React.createContext({
+  isLoading: true,
   getAllTodos: [],
   totalTodos: 0,
   completedTodos: 0,
