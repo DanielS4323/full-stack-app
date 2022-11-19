@@ -19,6 +19,14 @@ body {
   box-shadow: 0 0 0 0 !important;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
 /* CSS HELPERS */
 
 .margin.rl-10 {
