@@ -20,7 +20,6 @@ const Todo = (props) => {
 
   const checkForMark = todo.completed === 'true' ? true : false
 
-  // console.log(todo.completed)
 
   return (
     <React.Fragment>
@@ -31,7 +30,6 @@ const Todo = (props) => {
               onChange={onClickHandleMark}
               type="checkbox"
               className="filled-in"
-              
               checked={checkForMark}
             />
             <span className="margin rl-10"></span>
