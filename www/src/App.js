@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./components/UI/Header";
 import CreateTodo from "./components/Todo/CreateTodo";
 import TodoList from "./components/Todo/TodoList";
 import "./index.css";
@@ -7,15 +6,13 @@ import { useContext } from "react";
 import TodoContext from "./store/Todo-Context";
 import EditTodo from "./components/Todo/EditTodo";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
-
+import Layout from "./components/layout/Layout";
 
 function App() {
   const { todoToEdit, isLoading } = useContext(TodoContext);
 
-
   return (
-    <div className="App">
-      <Header />
+    <Layout>
       <div className="row margin top-100">
         <div className="container">
           {!todoToEdit && <CreateTodo />}
@@ -28,7 +25,7 @@ function App() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 }
 
