@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
-import {
-  addNewTodo,
-  deleteTodo,
-  editTodo,
-  getAllTodos,
-  markTodo,
-} from "../service";
+import React, { useState } from "react";
+import { addNewTodo, deleteTodo, editTodo, markTodo } from "../service";
 import TodoContext from "./Todo-Context";
 
 const TodoProvider = (props) => {
   const [todos, setTodos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [updateUI, setUpdateUI] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState(null);
 
-  useEffect(() => {
-    getAllTodos().then((res) => {
-      setTodos(res);
-    });
-  }, [setTodos, updateUI]);
+  // useEffect(() => {
+  //   getAllTodos().then((res) => {
+  //     setTodos(res);
+  //   });
+  // }, [setTodos, updateUI]);
 
   const completedTodosHandler = todos?.filter(
     (todo) => todo.completed === "true"
@@ -31,13 +24,13 @@ const TodoProvider = (props) => {
     };
 
     addNewTodo(newTodo);
-    setUpdateUI((prev) => !prev);
+    setUpdateUI(!updateUI);
   };
 
   const deleteTodoHandler = (id) => {
     deleteTodo(id);
     setTodoToEdit(false);
-    setUpdateUI((prev) => !prev);
+    setUpdateUI(!updateUI);
   };
 
   const markTodoHandler = (id, completed) => {
@@ -46,7 +39,7 @@ const TodoProvider = (props) => {
       completed: markedCheck,
     };
     markTodo(id, markedTodo);
-    setUpdateUI((prev) => !prev);
+    setUpdateUI(!updateUI);
   };
 
   const editToggleHandler = (todo) => {
@@ -59,15 +52,16 @@ const TodoProvider = (props) => {
 
   const editTodoHandler = (id, text) => {
     editTodo(id, text);
-    setUpdateUI((prev) => !prev);
     setTodoToEdit(null);
+    setUpdateUI(!updateUI);
   };
 
   const todoContext = {
     todos: todos,
+    setTodos: setTodos,
+    updateUI: updateUI,
     totalTodos: todos.length,
     completedTodos: completedTodosHandler.length,
-    isLoading: isLoading,
     todoToEdit: todoToEdit,
     addNewTodo: addNewTodoHandler,
     deleteTodo: deleteTodoHandler,
