@@ -17,7 +17,7 @@ export const deleteTodo = async (id) => {
   const response = await fetch(`${URL}/${TODOS}/${id}`, {
     method: "DELETE",
   });
-  const data = await response.json();
+
   if (!response.ok) {
     throw new Error("Could not delete todo.");
   }
