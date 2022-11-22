@@ -4,7 +4,7 @@ services:
     build: ./api
     container_name: api_c
     ports: 
-      - '4000:4000'
+      - '5000:5000'
     volumes:
       - ./api:/app
       - /app/node_modules
@@ -12,7 +12,23 @@ services:
     build: ./www
     container_name: www_c
     ports:
-      - '8080:8080'
+      - '3000:3000'
+    stdin_open: true
     volumes:
       - ./www:/app
       - /app/node_modules
+  reverse-proxy:
+    image: caddy/caddy:2-alpine
+    container_name: reverse-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+    - caddy_data:/data
+    - caddy_config:/config
+    - $PWD/Caddyfile:/etc/caddy/Caddyfile
+    - $PWD/my-website:/srv
+volumes:
+  caddy_data:
+  caddy_config:
