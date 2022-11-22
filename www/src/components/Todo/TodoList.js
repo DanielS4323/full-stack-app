@@ -1,9 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import TodoContext from "../../store/Todo-Context";
 import Todo from "./Todo";
+import { getAllTodos } from "../../service";
 
 const TodoList = () => {
-  const { totalTodos, todos, completedTodos } = useContext(TodoContext);
+  const { totalTodos, todos, completedTodos, setTodos, updateUI } =
+    useContext(TodoContext);
+
+  useEffect(() => {
+    getAllTodos().then((res) => {
+      setTodos(res);
+    });
+  }, [setTodos, updateUI]);
 
   const noTodos = <p>No todos...</p>;
 
