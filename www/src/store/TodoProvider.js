@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addNewTodo, deleteTodo, editTodo, markTodo } from "../service";
 import TodoContext from "./Todo-Context";
+import { getAllTodos } from "../service";
 
 const TodoProvider = (props) => {
   const [todos, setTodos] = useState([]);
-  const [updateUI, setUpdateUI] = useState(false);
   const [todoToEdit, setTodoToEdit] = useState(null);
+  const [updateUI, setUpdateUI] = useState(false);
 
-  // useEffect(() => {
-  //   getAllTodos().then((res) => {
-  //     setTodos(res);
-  //   });
-  // }, [setTodos, updateUI]);
+  useEffect(() => {
+    getAllTodos().then((res) => {
+      setTodos(res);
+    });
+  }, [updateUI]);
 
   const completedTodosHandler = todos?.filter(
     (todo) => todo.completed === "true"
@@ -22,24 +23,32 @@ const TodoProvider = (props) => {
       text: text,
       completed: completed,
     };
-
     addNewTodo(newTodo);
     setUpdateUI(!updateUI);
   };
 
   const deleteTodoHandler = (id) => {
     deleteTodo(id);
+    setTodos(todos.filter((todo) => todo.id !== id));
     setTodoToEdit(false);
-    setUpdateUI(!updateUI);
   };
 
   const markTodoHandler = (id, completed) => {
     const markedCheck = completed === "true" ? "false" : "true";
+
+    const todoToMark = todos.find((todo) => todo.id === id);
     let markedTodo = {
       completed: markedCheck,
     };
+
     markTodo(id, markedTodo);
-    setUpdateUI(!updateUI);
+
+    let updateMarkedTodo = {
+      text: todoToMark.text,
+      id: id,
+      completed: markedCheck,
+    };
+    setTodos(todos.map((todo) => (todo.id === id ? updateMarkedTodo : todo)));
   };
 
   const editToggleHandler = (todo) => {
@@ -52,16 +61,21 @@ const TodoProvider = (props) => {
 
   const editTodoHandler = (id, text) => {
     editTodo(id, text);
+
+    let updatedTodo = {
+      text: text.text,
+      id: todoToEdit.id,
+      completed: todoToEdit.completed,
+    };
+
+    setTodos(todos.map((todo) => (todo.id === id ? updatedTodo : todo)));
     setTodoToEdit(null);
-    setUpdateUI(!updateUI);
   };
 
   const todoContext = {
     todos: todos,
-    setTodos: setTodos,
-    updateUI: updateUI,
-    totalTodos: todos.length,
-    completedTodos: completedTodosHandler.length,
+    totalTodos: todos?.length,
+    completedTodos: completedTodosHandler?.length,
     todoToEdit: todoToEdit,
     addNewTodo: addNewTodoHandler,
     deleteTodo: deleteTodoHandler,
