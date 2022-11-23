@@ -30,5 +30,6 @@ services:
     - $PWD/Caddyfile:/etc/caddy/Caddyfile
     - $PWD/my-website:/srv
 volumes:
+  Caddyfile:
   caddy_data:
   caddy_config:
