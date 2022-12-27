@@ -1,24 +1,31 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
+import { editTodo } from "../../service";
 import TodoContext from "../../store/Todo-Context";
 import Button from "../UI/Button";
 
 const EditTodo = () => {
-  const { todoToEdit, editTodo, cancelToggle } = useContext(TodoContext);
+  const { todoToEdit, cancelToggle } = useContext(TodoContext);
   const [editTodoText, setEditTodoText] = useState("");
-
+  const queryClient = useQueryClient();
   const onChangeHandle = (event) => {
     setEditTodoText(event.target.value);
   };
 
-  const onClickHandle = () => {
+  const updateTodoMutation = useMutation(editTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
+
+  const onClickHandleEdit = () => {
     let text = editTodoText.trim();
-    const editetText = {
-      text: text,
-    };
+
     if (text.length > 1) {
-      editTodo(todoToEdit.id, editetText);
+      updateTodoMutation.mutate({ ...todoToEdit, text: text });
+      cancelToggle()
     }
-    
+
     return;
   };
 
@@ -51,7 +58,7 @@ const EditTodo = () => {
                 className="purple darken-4 white-text btn waves-effect waves-light margin all-10  brown-text hoverable"
                 iconClassName="material-icons right"
                 icon="note_add"
-                onClick={onClickHandle}
+                onClick={onClickHandleEdit}
               />
               <Button
                 title="Cancel"

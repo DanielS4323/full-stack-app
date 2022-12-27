@@ -4,13 +4,13 @@ const TODOS = "todos";
 export const getAllTodos = async () => {
   const response = await fetch(`${URL}/${TODOS}`);
 
-  if (!response.ok) {
-    throw new Error("Could not fetch todos.");
-  }
+  // if (!response.ok) {
+  //   throw new Error("Could not fetch todos.");
+  // }
+  // const data = await response.json();
+  // return data;
 
-  const data = await response.json();
-
-  return data;
+  return response.json();
 };
 
 export const deleteTodo = async (id) => {
@@ -33,12 +33,7 @@ export const addNewTodo = async (newTodo) => {
       "Content-Type": "application/json",
     },
   });
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error("Could not add new todo.");
-  }
-  return data;
+  return response.json();
 };
 
 export const markTodo = async (id, completed) => {
@@ -51,25 +46,18 @@ export const markTodo = async (id, completed) => {
   });
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error("Could not mark todo.");
-  }
-
   return data;
 };
 
-export const editTodo = async (id, text) => {
-  const response = await fetch(`${URL}/${TODOS}/${id}`, {
+export const editTodo = async (todo) => {
+  const response = await fetch(`${URL}/${TODOS}/${todo.id}`, {
     method: "PATCH",
-    body: JSON.stringify(text),
+    body: JSON.stringify(todo),
     headers: {
       "Content-Type": "application/json",
     },
   });
   const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error("Could not mark todo.");
-  }
   return data;
 };

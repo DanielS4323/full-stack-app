@@ -1,17 +1,27 @@
-import React, { useContext, useRef } from "react";
-import TodoContext from "../../store/Todo-Context";
+import React, { useRef } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addNewTodo } from "../../service";
 import Button from "../UI/Button";
 
 const CreateTodo = () => {
-  const { addNewTodo } = useContext(TodoContext);
+  const queryClient = useQueryClient();
   const textInputRef = useRef("");
+
+  const addNewTodoMutation = useMutation(addNewTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    },
+  });
 
   const addNewTodoHandler = () => {
     let todoText = textInputRef.current.value.trim();
-    let completed = "";
 
     if (todoText.length > 1) {
-      addNewTodo(todoText, completed);
+      const newTodo = {
+        text: todoText,
+        completed: "false",
+      };
+      addNewTodoMutation.mutate(newTodo);
       textInputRef.current.value = "";
     }
     return;

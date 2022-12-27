@@ -6,13 +6,13 @@ import { getAllTodos } from "../service";
 const TodoProvider = (props) => {
   const [todos, setTodos] = useState([]);
   const [todoToEdit, setTodoToEdit] = useState(null);
-  const [updateUI, setUpdateUI] = useState(false);
 
-  useEffect(() => {
-    getAllTodos().then((res) => {
-      setTodos(res);
-    });
-  }, [updateUI]);
+
+  // useEffect(() => {
+  //   getAllTodos().then((res) => {
+  //     setTodos(res);
+  //   });
+  // }, [updateUI]);
 
   const completedTodosHandler = todos?.filter(
     (todo) => todo.completed === "true"
@@ -24,7 +24,7 @@ const TodoProvider = (props) => {
       completed: completed,
     };
     addNewTodo(newTodo);
-    setUpdateUI(!updateUI);
+    
   };
 
   const deleteTodoHandler = (id) => {
