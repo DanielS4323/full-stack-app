@@ -4,12 +4,6 @@ const TODOS = "todos";
 export const getAllTodos = async () => {
   const response = await fetch(`${URL}/${TODOS}`);
 
-  // if (!response.ok) {
-  //   throw new Error("Could not fetch todos.");
-  // }
-  // const data = await response.json();
-  // return data;
-
   return response.json();
 };
 
@@ -34,19 +28,6 @@ export const addNewTodo = async (newTodo) => {
     },
   });
   return response.json();
-};
-
-export const markTodo = async (id, completed) => {
-  const response = await fetch(`${URL}/${TODOS}/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(completed),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-
-  return data;
 };
 
 export const editTodo = async (todo) => {
