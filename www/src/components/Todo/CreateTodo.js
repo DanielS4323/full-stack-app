@@ -1,24 +1,33 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import Button from "../UI/Button";
 import TodoContext from "../../store/Todo-Context";
+import useInput from "../hooks/use-input";
 
 const CreateTodo = () => {
   const { addNewTodo } = useContext(TodoContext);
-  const textInputRef = useRef("");
+
+  const {
+    value: todoText,
+    isValid: isValidText,
+    hasError,
+    valueChangeHandler: textChangeHandler,
+    inputBlurHandler: textBlurHandler,
+    reset: resetTextInput,
+  } = useInput((value) => value.trim().length > 2);
 
   const addNewTodoHandler = () => {
-    let todoText = textInputRef.current.value.trim();
-
-    if (todoText.length > 1) {
+    if (isValidText) {
       const newTodo = {
         text: todoText,
         completed: "false",
       };
       addNewTodo.mutate(newTodo);
-      textInputRef.current.value = "";
+      resetTextInput();
     }
     return;
   };
+
+  // console.log(sranje);
 
   return (
     <div className="row">
@@ -29,21 +38,28 @@ const CreateTodo = () => {
             id="icon_prefix"
             type="text"
             className="white-text active"
-            ref={textInputRef}
-            autoFocus
+            value={todoText}
+            onChange={textChangeHandler}
+            onBlur={textBlurHandler}
           />
+          {hasError && (
+            <p className="white-text center">
+              Text must be at least 2 characters long!
+            </p>
+          )}
           <label htmlFor="icon_prefix" className="white-text">
             Enter To do
           </label>
+
           <div className="row">
             <div className="col-12 center">
-              <Button
+             {!hasError && <Button
                 title="add todo"
                 className="deep-purple lighten-1 white-text btn waves-effect waves-light margin top-10 brown-text hoverable"
                 onClick={addNewTodoHandler}
                 iconClassName="material-icons right"
                 icon="note_add"
-              />
+              />}
             </div>
           </div>
         </div>
