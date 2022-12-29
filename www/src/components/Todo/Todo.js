@@ -1,28 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
-import { deleteTodo, editTodo, markTodo } from "../../service";
 import TodoContext from "../../store/Todo-Context";
 import Button from "../UI/Button";
 
 const Todo = ({ todo }) => {
-  const { editToggle } = useContext(TodoContext);
-  const queryClient = useQueryClient();
-
-  const deleteTodoMutation = useMutation(deleteTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
-    },
-  });
-
-  const updateTodoMutation = useMutation(editTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
-    },
-  });
+  const { editToggle, deleteTodo, cancelToggle, updateTodo } =
+    useContext(TodoContext);
 
   const onClickHandleMark = () => {
     const markedCheck = todo.completed === "true" ? "false" : "true";
-    updateTodoMutation.mutate({ ...todo, completed: markedCheck });
+    updateTodo.mutate({ ...todo, completed: markedCheck });
   };
 
   const onClickHandleEditToggle = () => {
@@ -30,7 +16,8 @@ const Todo = ({ todo }) => {
   };
 
   const onClickHandleDelete = () => {
-    deleteTodoMutation.mutate(todo.id);
+    deleteTodo.mutate(todo.id);
+    cancelToggle();
   };
 
   const checkForMark = todo.completed === "true" ? true : false;

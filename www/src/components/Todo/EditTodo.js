@@ -1,29 +1,21 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
-import { editTodo } from "../../service";
 import TodoContext from "../../store/Todo-Context";
 import Button from "../UI/Button";
 
 const EditTodo = () => {
-  const { todoToEdit, cancelToggle } = useContext(TodoContext);
+  const { todoToEdit, cancelToggle, updateTodo } = useContext(TodoContext);
   const [editTodoText, setEditTodoText] = useState("");
-  const queryClient = useQueryClient();
+
   const onChangeHandle = (event) => {
     setEditTodoText(event.target.value);
   };
 
-  const updateTodoMutation = useMutation(editTodo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("todos");
-    },
-  });
-
   const onClickHandleEdit = () => {
     let text = editTodoText.trim();
 
-    if (text.length > 1) {
-      updateTodoMutation.mutate({ ...todoToEdit, text: text });
-      cancelToggle()
+    if (text.length > 1 && text !== todoToEdit.text) {
+      updateTodo.mutate({ ...todoToEdit, text: text });
+      cancelToggle();
     }
 
     return;
