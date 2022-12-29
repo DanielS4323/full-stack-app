@@ -1,13 +1,10 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllTodos } from "../../service";
-// import TodoContext from "../../store/Todo-Context";
 import Todo from "./Todo";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const TodoList = () => {
-  // const { totalTodos, todos, completedTodos } = useContext(TodoContext);
-
   const { isLoading, isError, data: todos } = useQuery(["todos"], getAllTodos);
 
   const totalTodos = todos?.length;
